@@ -14,7 +14,7 @@ const adminLogin = async (req, res, next) => {
     if (!isMatch) return next(new ErrorHandler("Invalid Admin Key", 401));
 
     const token = Jwt.sign(secretKey, process.env.JWT_SECRET);
-    res.status(200).cookie("chat-admin-token", token).json({
+    res.status(200).cookie("chat-admin-token", token, cookieOptions).json({
       success: true,
       message: "Authenticated successfully",
     });
